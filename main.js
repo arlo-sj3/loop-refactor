@@ -13,49 +13,92 @@ Run the command 'mocha' to test. Tests check for expected output and absence of 
 module.exports = {
 
   sum: (arr, base) => {
-    let sum = base;
-    for (var i = 0; i < arr.length; i++){
-      sum += arr[i];
-    }
-    return sum;
-  },
+    return arr.reduce(function(prev,curr){
+  return prev + curr;
+},base);
+},
+
+// sum : ()nums.reduce(function(prev,curr){
+//   return prev +curr
+// }
+// }),
+
+  // sum: (arr, base) => {
+  //   let sum = base;
+  //   for (var i = 0; i < arr.length; i++){
+  //     sum += arr[i];
+  //   }
+  //   return sum;
+  // },
+// sum: function(arr, base){
+//   let sum = base;
+//     for (var i = 0; i < arr.length; i++){
+//       sum += arr[i];
+//     }
+//     return sum;
+// }
+
+// sum(arr, base){
+//   let sum = base;
+//     for (var i = 0; i < arr.length; i++){
+//       sum += arr[i];
+//     }
+//     return sum;
+// },
+
 
   someObjsContainProp: (arr, prop) => {
-    for(var i = 0; i < arr.length; i++){
-      if(arr[i].hasOwnProperty(prop)){
-        return true;
+
+    return arr.some(function(person){
+      if(person.hasOwnProperty(prop)){
+        return true
+      } else {
+        return false
       }
-    }
-    return false;
+
+    })
+
+
   },
 
   convertNameArrayToObject: (arr) => {
-    let nameObj = [];
-    for(var i = 0; i < arr.length; i++){
-      let obj = {};
-      obj.first = arr[i][0];
-      obj.last = arr[i][1];
-      nameObj.push(obj);
-    }
-    return nameObj;
+
+    return arr.map(function(person){
+  let obj = {};
+  obj.first = person[0]
+  obj.last = person[1]
+  return obj
+
+})
+
+
   },
 
+
   objContainsProp: (arr, prop) => {
-    for (var i = 0; i < arr.length; i++){
-      if(!arr[i].hasOwnProperty(prop)){
-        return false;
+
+    return arr.every(function(person){
+      if(person.hasOwnProperty(prop)){
+        return true
+      } else {
+        return false
       }
-    }
-    return true;
+
+    })
+
   },
 
   stringMatch: (arr, str) => {
-    let matches = [];
-    for(var i = 0; i < arr.length; i++){
-      if (arr[i].includes(str)){
-        matches.push(arr[i]);
-      }
+
+    return arr.filter(function(thing){
+
+      console.log(arr, str, thing)
+    if (thing.includes(str)){
+      return true
     }
-    return matches;
+
+    })
+
+  
   },
 };
